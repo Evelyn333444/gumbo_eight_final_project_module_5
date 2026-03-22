@@ -17,6 +17,11 @@
     <main id="movie-container">
         <!-- Movie cards will be dynamically inserted here -->
     </main>
+    <select id="filter" onchange="filtermovie.Year()">
+            <option value="" disabled selected> Sort </option>
+            <option value="OLD_TO_NEW"> Release year, old to new</option>
+            <option value="NEW_TO_OLD">Release year, new to old</option>
+            </select>   
     <script src="index.js"></script>
 </body>
  <footer>
