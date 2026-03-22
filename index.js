@@ -14,8 +14,7 @@ searchForm.addEventListener('submit', function(e) {
 function searchMovies(query) {
     // Note: OMDb API requires a single movie search parameter ('t') or a search term ('s')
     // When using 's' for search, the response structure is different (results are in a "Search" array)
-    const url = `https://omdbapi.com{query}&apikey=${API_KEY}`;
-    
+    const url = `const url = ``https://www.omdbapi.com/?s=${query}&apikey=${API_KEY}`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
