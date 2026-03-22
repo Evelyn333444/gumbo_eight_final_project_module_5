@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Sorter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Movie Sorter App</h1>
+        <div class="controls">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select" onchange="sortMovies(this.value)">
+                <option value="popularity.desc">Popularity (Desc)</option>
+                <option value="vote_average.desc">Rating (Desc)</option>
+                <option value="title.asc">Title (A-Z)</option>
+            </select>
+        </div>
+    </header>
+     <main id="movie-grid">
+        <!-- Movie cards will be dynamically inserted here by JavaScript -->
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2026 Movie Sorter. Data from [TMDb](https://themoviedb.org).</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
