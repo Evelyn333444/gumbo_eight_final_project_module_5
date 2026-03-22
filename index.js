@@ -1,62 +1,50 @@
-const API_KEY = 'd3102f89';
-const BASE_URL = 'https://themoviedb.org';
-const IMAGE_BASE_URL = 'https://tmdb.org';
-const MOVIE_GRID = document.getElementById('movie-grid');
+const API_KEY = 'd3102f89'; // Your OMDb API key
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+const movieContainer = document.getElementById('movie-container');
 
-let allMovies = []; // Store fetched movies
-
-// Function to fetch movies
-async function fetchMovies(sortBy = 'popularity.desc') {
-    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&sort_by=${sortBy}`;
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        allMovies = data.results;
-        displayMovies(allMovies);
-    } catch (error) {
-        console.error("Error fetching movies:", error);
+searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const searchTerm = searchInput.value;
+    if (searchTerm) {
+        searchMovies(searchTerm);
     }
+});
+
+function searchMovies(query) {
+    // Note: OMDb API requires a single movie search parameter ('t') or a search term ('s')
+    // When using 's' for search, the response structure is different (results are in a "Search" array)
+    const url = `https://omdbapi.com{query}&apikey=${API_KEY}`;
+    
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data.Search) {
+                displayMovies(data.Search);
+            } else {
+                movieContainer.innerHTML = '<p>No movies found.</p>';
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
-
-// Function to display movies in the grid
 function displayMovies(movies) {
-    MOVIE_GRID.innerHTML = ''; // Clear previous movies
+    movieContainer.innerHTML = '';
     movies.forEach(movie => {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
 
         movieCard.innerHTML = `
-            <img src="${IMAGE_BASE_URL}${movie.poster_path}" alt="${movie.title}">
+            <img src="${movie.Poster !== 'N/A' ? movie.Poster : 'https://placeholder.com'}" alt="${movie.Title} Poster">
             <div class="movie-info">
-                <h3>${movie.title}</h3>
-                <p>Rating: ${movie.vote_average}</p>
-                <p>Release: ${movie.release_date}</p>
+                <h2>${movie.Title}</h2>
+                <p>${movie.Year}</p>
             </div>
         `;
 
-        MOVIE_GRID.appendChild(movieCard);
+        movieContainer.appendChild(movieCard);
     });
 }
 
-// Function to sort movies based on user selection
-function sortMovies(sortValue) {
-    let sortedMovies = [...allMovies];
-    switch (sortValue) {
-        case 'popularity.desc':
-            sortedMovies.sort((a, b) => b.popularity - a.popularity);
-            break;
-        case 'vote_average.desc':
-            sortedMovies.sort((a, b) => b.vote_average - a.vote_average);
-            break;
-        case 'title.asc':
-            sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
-            break;
-    }
-    displayMovies(sortedMovies);
-}
-
-// Initial fetch of popular movies when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    fetchMovies();
-});
+// Initial fetch of popular movies (OMDb doesn't have a direct 'popular' endpoint like TMDB, so this is a placeholder or you would need a different API)
+// For OMDb, you typically search by title.
