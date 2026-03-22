@@ -11,17 +11,17 @@
         <h1>Movie Finder</h1>
         <form id="search-form">
             <input type="text" id="search-input" placeholder="Search for a movie...">
-            <button type="submit">Search</button>
+            <button type="submit">Search</button> 
+            <select id="filter" onchange="filtermovie.Year()">
+                <option value="" disabled selected> Sort </option>
+                <option value="OLD_TO_NEW"> oldest to newest</option>
+                <option value="NEW_TO_OLD"> newest to oldest</option>
+            </select>  
         </form>
     </header>
     <main id="movie-container">
         <!-- Movie cards will be dynamically inserted here -->
     </main>
-    <select id="filter" onchange="filtermovie.Year()">
-            <option value="" disabled selected> Sort </option>
-            <option value="OLD_TO_NEW"> Release year, old to new</option>
-            <option value="NEW_TO_OLD">Release year, new to old</option>
-            </select>   
     <script src="index.js"></script>
 </body>
  <footer>
