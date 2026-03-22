@@ -63,3 +63,38 @@ main {
     font-size: 0.9rem;
     color: #666;
 }
+
+/*
+Footer
+*/
+
+body {
+  /* This ensures the body takes up at least the full height of the viewport */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+footer {
+  /* Black background color */
+  background-color: #000000;
+  
+  /* White text color to contrast with the black background */
+  color: #ffffff;
+  
+  /* Centers the text horizontally */
+  text-align: center;
+  
+  /* Adds some space above and below the text inside the footer */
+  padding: 20px 0;
+  
+  /* Pushes the footer to the bottom of the page content */
+  margin-top: auto; 
+}
+
+.copyright {
+  /* Removes default paragraph margin for better control */
+  margin: 0; 
+  /* Optional: styles the text as "small print" */
+  font-size: 0.9em; 
+}
