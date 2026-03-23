@@ -45,4 +45,17 @@ function displayMovies(movies) {
     });
 }
 
+async function renderMovies() {
+  const bookWrapper = document.querySelector('books');
+  
+  booksWrapper.classList.remove('books__loading')
+
+    if (filter === 'OLD_TO_NEW') {
+     const filteredMovies = movies.sort ((a, b) => 
+    )}
+    else if (filter === 'NEW_TO_OLD') {
+      const filteredMovies = movies.sort ((a, b) => 
+    )}
+  }
+
 
