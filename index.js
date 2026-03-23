@@ -24,7 +24,7 @@ async function searchMovies(query) {
     
     if (data.Search) {
         currentMovies = data.Search;
-        sortSelect.value = '';
+        filter.value = '';
         displayMovies(currentMovies);
     } else {
         movieContainer.innerHTML = '<p>No movies found.</p>';
@@ -53,7 +53,7 @@ filter.addEventListener('change', (e) => {
     renderMovies(e.target.value)
 })
 
-function sortMovies(sortType) {
+function renderMovies(sortType) {
     let sortedMovies = [...currentMovies]; //copy so original is preserved
 
     if (sortType === 'NEW_TO_OLD') {
